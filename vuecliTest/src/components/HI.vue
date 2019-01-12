@@ -7,13 +7,13 @@
 
 <script>
 export default {
-  name: 'HI',
-  data () {
+  name: "HI",
+  data() {
     return {
-      msg: 'This HI Page'
-    }
+      msg: "This HI Page"
+    };
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -21,5 +21,4 @@ export default {
 /* h1, h2 {
   font-weight: normal;
 } */
-
 </style>
