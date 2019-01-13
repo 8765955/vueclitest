@@ -6,8 +6,11 @@
       <router-link to="/HI">HI</router-link>
       <router-link :to="{name:'HI1',params:{username:'bocsz'}}">HI1</router-link>
     </div>
-    <p>{{ $route.name }}</p>
-    <router-view/>
+    <!-- <p>{{ $route.name }}</p> -->
+    <router-view name='left' style="float:left;background-color:#ccc;width:15%;height:300px"></router-view>
+    <router-view style="float:left;background-color:#14416e;height:100%"></router-view>
+    
+    
   </div>
 </template>
 
@@ -23,7 +26,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #14416e;
   margin-top: 60px;
 }
 </style>
