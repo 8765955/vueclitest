@@ -39,6 +39,11 @@ npm run build --report
       npm install 安装我们的项目依赖包，也就是安装package.json里的包，如果你网速不好，你也可以使用cnpm来安装。
       npm run dev 开发模式下运行我们的程序。给我们自动构建了开发用的服务器环境和在浏览器中打开，并实时监视我们的代码更改，即时呈现给我们。
 
+项目发布：
+1) 修改config/index.js中build下面assetsPublicPath:'./'
+2)npm run build，生成dist目录包含index.html、static目录包含css、js
+3) dist目录下内容拷贝到生产web服务器上即可
+
 vuex
 1) npm install vuex --save
 2) src下新建vuex目录，目录下新建store.js
@@ -63,3 +68,21 @@ vuex访问state对象，三种方法：
    })
 3）import {mapState} from 'vuex';
    computed:mapState(["count"])
+
+vuex Mutations修改状态
+传值：
+1) store.js中：
+const mutations={
+    add(state,n){
+        state.count+=n;
+    },
+    reduce(state){
+        state.count--;
+    }
+}
+2）<button @click="$store.commit('add',10)">+</button>
+直接写函数名：
+1）在count.vue中, import { mapState,mapMutations } from 'vuex';
+2）在count.vue中script中添加
+   methods:mapMutations(['add','reduce']),
+
