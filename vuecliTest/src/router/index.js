@@ -6,6 +6,7 @@ import HI1 from "@/components/HI1";
 import Menu from "@/components/Menu";
 import Params from "@/components/Params";
 import Error from "@/components/Error";
+import Count from "@/components/Count";
 
 Vue.use(Router);
 
@@ -20,6 +21,10 @@ export default new Router({
         default: HelloWorld,
         left: Menu
       }
+    },
+    {
+      path:"/Count",
+      component:Count
     },
     {
       path: "/params/:id/:content",

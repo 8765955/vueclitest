@@ -17,10 +17,11 @@
       <router-link to="/xxx">404链接</router-link>|
     </div>
     <!-- <p>{{ $route.name }}</p> -->
-    <router-view name="left" style="float:left;background-color:#ccc;width:15%;height:300px"></router-view>
-    <transition name="fade" mode="out-in">
-      <router-view style="float:left;background-color:white;height:100%"></router-view>
-    </transition>
+    <!-- <router-view name="left" style="float:left;background-color:#ccc;width:15%;height:300px"></router-view> -->
+    <!-- <transition name="fade" mode="out-in"> -->
+      <!-- <router-view style="float:left;background-color:white;height:100%"></router-view> -->
+      <router-view></router-view>
+    <!-- </transition> -->
   </div>
 </template>
 
@@ -57,10 +58,10 @@ export default {
   opacity: 1;
 }
 .fade-enter-active {
-  transition: opacity 0.5s;
+  transition: opacity 1.5s;
 }
 .fade-leave-active {
   opacity: 0;
-  transition: opacity 0.5s;
+  transition: opacity 1.5s;
 }
 </style>
