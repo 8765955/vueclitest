@@ -11,7 +11,7 @@ import Count from "@/components/Count";
 import Dashboard from '@/components/DashBoard'
 
 Vue.use(Router);
-
+// console.log('1')
 export default new Router({
   // mode history 正常url , hash 带#
   mode: 'history',
@@ -35,41 +35,47 @@ export default new Router({
         component: Count,
         iconCls: 'fa fa-address-card',
         name: '联系人管理'
+      },{
+        path: '/HI1',
+        component: HI1,
+        name: 'HI1',
+        xx:'xx'
       }]
 
     },
     {
-      path: "/HI",
+      path: "/",
       component: HI,
       name: "params",
+      component: Main,
       leaf:true,
+      iconCls: 'fa fa-address-card',
       children: [{
         path: '/HI',
         component: HI,
-        iconCls: 'fa fa-address-card',
         name: '联系人管理'
       }]
     },
-    {
-      path: "/params/:id/:content",
-      name: "params",
-      component: Params,
-      beforeEnter: (to, from, next) => {
-        console.log('我进入了params模板');
-        console.log(to);
-        console.log(from); //to from 都是对象
-        next(); //next(false) 或者 不写 则不进入本页面。 next() 或者 next(true) 进入下一步
-      }
-    },
-    {
-      path: "/goHome",
-      redirect: '/'
-    },
-    {
-      path: "/goParams/:id/:content",
-      redirect: '/params/:id/:content',
-      alias: '/aliasParams/:id/:content'
-    },
+    // {
+    //   path: "/params/:id/:content",
+    //   name: "params",
+    //   component: Params,
+    //   beforeEnter: (to, from, next) => {
+    //     console.log('我进入了params模板');
+    //     console.log(to);
+    //     console.log(from); //to from 都是对象
+    //     next(); //next(false) 或者 不写 则不进入本页面。 next() 或者 next(true) 进入下一步
+    //   }
+    // },
+    // {
+    //   path: "/goHome",
+    //   redirect: '/'
+    // },
+    // {
+    //   path: "/goParams/:id/:content",
+    //   redirect: '/params/:id/:content',
+    //   alias: '/aliasParams/:id/:content'
+    // },
     {
       path: "*",
       component: Error,

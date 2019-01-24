@@ -91,3 +91,4 @@ const mutations={
 npm install sass-loader -D
 npm install node-sass -D
 npm install font-awesome -D
+npm install --save axios

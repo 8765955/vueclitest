@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ msg }}-{{ $route.params.username}}</h1>
+    <h1>{{ msg }}-{{ $route.name}}</h1>
   </div>
 </template>
 
@@ -11,6 +11,9 @@ export default {
     return {
       msg: 'This HI Page 1'
     }
+  },
+  mounted (){
+    //console.log(this.$route)
   }
 }
 </script>
