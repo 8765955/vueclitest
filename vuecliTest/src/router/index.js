@@ -4,6 +4,7 @@ import HelloWorld from "@/components/HelloWorld";
 import HI from "@/components/HI";
 import HI1 from "@/components/HI1";
 import Menu from "@/components/Menu";
+import Main from "@/components/Main";
 import Params from "@/components/Params";
 import Error from "@/components/Error";
 import Count from "@/components/Count";
@@ -18,7 +19,7 @@ export default new Router({
       path: "/",
       name: "HelloWorld",
       components: {
-        default: HelloWorld,
+        default: Main,
         left: Menu
       }
     },

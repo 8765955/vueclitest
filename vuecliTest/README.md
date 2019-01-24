@@ -86,3 +86,8 @@ const mutations={
 2）在count.vue中script中添加
    methods:mapMutations(['add','reduce']),
 
+
+
+npm install sass-loader -D
+npm install node-sass -D
+npm install font-awesome -D
