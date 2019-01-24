@@ -8,30 +8,53 @@ import Main from "@/components/Main";
 import Params from "@/components/Params";
 import Error from "@/components/Error";
 import Count from "@/components/Count";
+import Dashboard from '@/components/DashBoard'
 
 Vue.use(Router);
 
 export default new Router({
   // mode history 正常url , hash 带#
-  mode:'history',
-  routes: [
-    {
+  mode: 'history',
+  routes: [{
       path: "/",
-      name: "HelloWorld",
-      components: {
-        default: Main,
-        left: Menu
-      }
+      hidden: true,
+      component: Main,
+      children: [{
+        path: '/',
+        component: Dashboard,
+        name: '首页'
+      }]
     },
     {
-      path:"/Count",
-      component:Count
+      path: '/system',
+      name: '系统中心',
+      component: Main,
+      iconCls: 'fa fa-address-card',
+      children: [{
+        path: '/system/contract',
+        component: Count,
+        iconCls: 'fa fa-address-card',
+        name: '联系人管理'
+      }]
+
+    },
+    {
+      path: "/HI",
+      component: HI,
+      name: "params",
+      leaf:true,
+      children: [{
+        path: '/HI',
+        component: HI,
+        iconCls: 'fa fa-address-card',
+        name: '联系人管理'
+      }]
     },
     {
       path: "/params/:id/:content",
       name: "params",
       component: Params,
-      beforeEnter:(to,from,next)=>{
+      beforeEnter: (to, from, next) => {
         console.log('我进入了params模板');
         console.log(to);
         console.log(from); //to from 都是对象
@@ -40,25 +63,29 @@ export default new Router({
     },
     {
       path: "/goHome",
-      redirect:'/'
+      redirect: '/'
     },
     {
       path: "/goParams/:id/:content",
-      redirect:'/params/:id/:content',
-      alias:'/aliasParams/:id/:content'
+      redirect: '/params/:id/:content',
+      alias: '/aliasParams/:id/:content'
     },
     {
       path: "*",
       component: Error,
-    },
-    {
-      path: "/HI",
-      component: HI,
-      children: [
-        // { path: "/", component: HI, name: "HI" },
-        { path: "HI1", component: HI1, name: "HI1" }
-      ],
-      alias:'/HIalias'
     }
+    // {
+    //   path: "/HI",
+    //   component: HI,
+    //   children: [
+    //     // { path: "/", component: HI, name: "HI" },
+    //     {
+    //       path: "HI1",
+    //       component: HI1,
+    //       name: "HI1"
+    //     }
+    //   ],
+    //   alias: '/HIalias'
+    // }
   ]
 });

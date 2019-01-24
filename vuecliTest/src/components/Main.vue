@@ -119,6 +119,7 @@
 
             if(children.length < 1)
                 continue
+            console.log(root)
             this.menuData.push(root)
             root.children = children
         }
