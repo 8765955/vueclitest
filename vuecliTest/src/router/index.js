@@ -3,58 +3,69 @@ import Router from "vue-router";
 import HelloWorld from "@/components/HelloWorld";
 import HI from "@/components/HI";
 import HI1 from "@/components/HI1";
-import Menu from "@/components/Menu";
+// import Menu from "@/components/Menu";
 import Main from "@/components/Main";
-import Params from "@/components/Params";
+// import Params from "@/components/Params";
 import Error from "@/components/Error";
 import Count from "@/components/Count";
-import Dashboard from '@/components/DashBoard'
+import Dashboard from "@/components/DashBoard";
 
 Vue.use(Router);
 // console.log('1')
 export default new Router({
   // mode history 正常url , hash 带#
-  mode: 'history',
-  routes: [{
+  mode: "history",
+  routes: [
+    {
+      path: "/login",
+      component: ()=>import('@/components/Login')
+    },
+    {
       path: "/",
       hidden: true,
       component: Main,
-      children: [{
-        path: '/',
-        component: Dashboard,
-        name: '首页'
-      }]
+      children: [
+        {
+          path: "/",
+          component: Dashboard,
+          name: "首页"
+        }
+      ]
     },
     {
-      path: '/system',
-      name: '系统中心',
+      path: "/system",
+      name: "系统中心",
       component: Main,
-      iconCls: 'fa fa-address-card',
-      children: [{
-        path: '/system/contract',
-        component: Count,
-        iconCls: 'fa fa-address-card',
-        name: '联系人管理'
-      },{
-        path: '/HI1',
-        component: HI1,
-        name: 'HI1',
-        xx:'xx'
-      }]
-
+      iconCls: "fa fa-address-card",
+      children: [
+        {
+          path: "/system/contract",
+          component: Count,
+          iconCls: "fa fa-address-card",
+          name: "联系人管理"
+        },
+        {
+          path: "/HI1",
+          component: HI1,
+          name: "HI1",
+          xx: "xx"
+        }
+      ]
     },
     {
       path: "/",
       component: HI,
       name: "params",
       component: Main,
-      leaf:true,
-      iconCls: 'fa fa-address-card',
-      children: [{
-        path: '/HI',
-        component: HI,
-        name: '联系人管理'
-      }]
+      leaf: true,
+      iconCls: "fa fa-address-card",
+      children: [
+        {
+          path: "/HI",
+          component: HI,
+          name: "联系人管理"
+        }
+      ]
     },
     // {
     //   path: "/params/:id/:content",
@@ -78,7 +89,7 @@ export default new Router({
     // },
     {
       path: "*",
-      component: Error,
+      component: Error
     }
     // {
     //   path: "/HI",

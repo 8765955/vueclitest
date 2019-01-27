@@ -19,7 +19,7 @@
                     <el-dropdown-item>
                         <a @click>修改密码</a>
                     </el-dropdown-item>
-                    <el-dropdown-item v-on:click.native>注销登录</el-dropdown-item>
+                    <el-dropdown-item @click.native='logout'>注销登录</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
         </el-col>
@@ -42,41 +42,6 @@
                     </el-menu-item>
                 </template>
             </el-menu>
-            <!-- <el-menu background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" v-bind:style=" collapsed ? {} : { 'width': '230px' } " :default-active="$route.path" class="el-menu-vertical-demo" unique-opened router v-show="!collapsed">
-                    <template v-for="(item,index) in menuData" v-if="!item.hidden">
-                        <el-submenu :index="index+''" v-if="!item.leaf">
-                            <template slot="title">
-                                <i :class="item.iconCls"></i><span slot="title">{{item.name}}</span>
-                            </template>
-                            <el-menu-item v-for="child in item.children" :index="child.path" :key="child.path" v-if="!child.hidden">
-                                {{child.name}}
-                            </el-menu-item>
-                        </el-submenu>
-                        <el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path" :key="item.children[0].path">
-                            <i :class="item.iconCls"></i><span slot="title">{{item.children[0].name}}</span>
-                        </el-menu-item>
-                    </template>
-        </el-menu>-->
-            <!--导航菜单-折叠后-->
-            <!-- <ul class="el-menu el-menu-vertical-demo collapsed el-menu-collapsed" v-show="collapsed" ref="menuCollapsed">
-                <li v-for="(item,index) in menuData" v-if="!item.hidden" class="el-submenu item">
-                    <template v-if="!item.leaf">
-                        <div class="el-submenu__title" style="padding-left: 20px;" @mouseover="showMenu(index,true)" @mouseout="showMenu(index,false)">
-                            <i :class="item.iconCls"></i>
-                        </div>
-                        <ul class="el-menu submenu" :class="'submenu-hook-'+index" @mouseover="showMenu(index,true)" @mouseout="showMenu(index,false)">
-                            <li v-for="child in item.children" v-if="!child.hidden" :key="child.path" class="el-menu-item" style="padding-left: 40px; color: #fff;" :class="$route.path==child.path?'is-active':''" @click="$router.push(child.path)">{{child.name}}</li>
-                        </ul>
-                    </template>
-                    <template v-else>
-                <li class="el-submenu">
-                    <div class="el-submenu__title el-menu-item" style="padding-left: 20px;height: 56px;line-height: 56px;padding: 0 20px;" :class="$route.path==item.children[0].path?'is-active':''" @click="$router.push(item.children[0].path)">
-                        <i :class="item.iconCls"></i>
-                    </div>
-                </li>
-                </template>
-                </li>
-            </ul> -->
         </aside>
         <section class="content-container">
             <div class="grid-content bg-purple-light">
@@ -98,6 +63,13 @@
 </template>
 
 <script>
+//import store from '@/vuex/store'
+import {
+    mapState,
+    mapMutations,
+    mapGetters,
+    mapActions
+} from 'vuex'
 let data = () => {
     return {
         sysName: "后台管理系统",
@@ -127,11 +99,28 @@ let initMenu = function () {
 
 export default {
     data: data,
+    // store,
     methods: {
         initMenu: initMenu,
+        ...mapMutations(['setToken']),
         //折叠导航栏
         collapse: function () {
             this.collapsed = !this.collapsed;
+        },
+        // submitForm() {
+        //     console.log('aa')
+        //     console.log(this.$store)
+        //     this.$store.dispatch('setToken', '12345')
+        // },
+        logout() {
+            console.log('logout')
+            console.log(this.$store)
+            this.$store.dispatch('setToken', '')
+            const hash = window.location.search.slice(1)
+            // window.opener.location.href = window.location.origin + '/login#' + hash
+            // window.close()
+            this.$router.go(0)
+            // this.$router.push('/#'+ hash)
         }
         // ,
         // showMenu: function (i, status) {
@@ -140,8 +129,15 @@ export default {
         //     )[0].style.display = status ? "block" : "none";
         // }
     },
+    computed: {
+        ...mapState(['token', 'count'])
+    },
     mounted: function () {
-        this.initMenu();
+        if (this.token == '')
+            this.$router.push('/login')
+
+        //
+        this.initMenu()
     }
 };
 </script>

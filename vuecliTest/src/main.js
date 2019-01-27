@@ -7,7 +7,9 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import 'font-awesome/css/font-awesome.min.css'
 Vue.config.productionTip = false
+import store from '@/vuex/store'
 
+// Vue.use(Vuex);
 Vue.use(ElementUI);
 import axios from 'axios'
 Vue.prototype.$axios = axios
@@ -25,6 +27,7 @@ axios.interceptors.response.use(res => {
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
   // components: { App },
   // template: '<App/>'
